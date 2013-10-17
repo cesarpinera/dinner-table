@@ -1,0 +1,28 @@
+Suppose you are given a set of n people (with n even) to be seated at a dinner party. The people will be seated along the two sides of a long table.
+
+      o   o   o      o
+   +-------------   ----+
+   |             ...    | 
+   +-------------   ----+ 
+      o   o   o      o
+Half are male, half are female. The given function g(p) identifies the gender of a given person.
+As the host, you also know an integer-valued "preference function" h(p1, p2) for a pair of people p1, p2. The preference function indicates how much the first person likes the second; it may be negative.
+
+The "score" of a table is determined by the following criteria:
+
+1 point for every adjacent pair (seated next to each other) of people with one female and the other male.
+2 points for every opposite pair (seated across from each other) of people with one female and the other male.
+h(p1, p2) + h(p2, p1) points for every adjacent or opposite pair of people p1, p2.
+Your job as host is to write a search that will find a "good" table score for a given set of people and preference function.
+
+The data is given to you in the form of an ASCII text file that has the even number n of people on the first line. The first n/2 people are assumed to be female, the rest male. The preference matrix follows on the remaining lines: rows with values separated by spaces. The people are assumed to be numbered 1..n. The seats are assumed to be numbered such that the top half of the table has seats 1..n/2 left-to-right, and the bottom half of the table has seats n/2+1..n left-to-right; thus seat n/2 is opposite seat n.
+
+The output should be a score, then a series of n rows, each with a person number, then a space, then a seat number.
+
+Construct a program that solves instances of the problem read from an instance file or, if you prefer, stdin, and writes the solution to a solution file or, if you prefer, stdout. You may use any programming language you like. I strongly recommend the use of a build tool such as make, and a source-code management system such as Git or Mercurial.
+
+There are three instances I want you to run on: hw1-inst1.txt, hw1-inst2.txt, hw1-inst3.txt. Please produce output files hw1-soln1.txt, hw1-soln2.txt, hw1-soln3.txt containing the best solutions you found in just 60 seconds of runtime.
+
+Turn in a tar or zip archive of your source code including the SCMS repository (if possible), your solution files, and a brief writeup saying how your code works, how to build it, how it did, and any other info you think I might find interesting. Describe the hardware and software setup under which you did the experiments. Be sure to put a copyright notice on your source code, and your name and email on your writeup. Do not include object files, executable files, or other large binary files that are likely useless to me.
+
+Above all, have fun!
