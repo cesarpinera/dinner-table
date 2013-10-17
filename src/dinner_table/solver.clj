@@ -159,6 +159,11 @@
   
   (let [d (data/parse-data-file "resources/hw1-inst1.txt")]
     (print-solution (complete-search d)))
+  ;; Score: 86
+  ;; (0 3 8 4 5)
+  ;; (7 9 2 6 1)
+  ;; 86
+
   )
 
 
