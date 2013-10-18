@@ -492,7 +492,7 @@
     (print-solution (simulated-annealing (haters-first d) 0.001 max)))
 
   (let [max 15
-        d (data/parse-data-file "resources/hw1-inst1.txt")]
+        d (data/parse-data-file "resources/hw1-inst2.txt")]
     (println "Searching for solutions for a table with" (count d) "people, " max "seconds each")
     (println "-----")
     (println "Greedy, haters first")
@@ -510,7 +510,12 @@
     (println "Simulated Anneling + Haters First")
     (print-solution (simulated-annealing (haters-first d) 0.001 max)))
 
-  )
-  
+
+  (let [max 10
+        d (data/parse-data-file "resources/hw1-inst1.txt")]
+    (print-solution (best-random d max))
+    )
+
+  )  
 
 

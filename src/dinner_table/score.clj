@@ -164,6 +164,21 @@
      :preference-r2 (preference-line r2)})
 )
 
+(defn- preference-opposite
+  "The score for people sitting opposite to each other (preference based)"
+  [r1 r2]
+  ((fn [r1 r2 points]
+     (if-not (and (seq r1) (seq r2))
+       points
+       (let [p1 (first r1)
+             p2 (first r2)]
+         (recur (rest r1)
+                (rest r2)
+                (+ (h p1 p2) (h p2 p1)
+                   points)))))
+   r1 r2 0))
+
+
 (defn score
   "Compute the score of a solution"
   [solution]
@@ -173,7 +188,8 @@
                (adjacent-line r2)
                (opposite r1 r2)
                (preference-line r1)
-               (preference-line r2)])))
+               (preference-line r2)
+               (preference-opposite r1 r2)])))
 
 (comment
   (score d)
@@ -186,5 +202,19 @@
           {:person :empty
            :gender :none
            :preferences [0 0]}])           ; 0
+
+
+  (let [d1 [(nth d 0)
+            (nth d 3)
+            (nth d 7)
+            (nth d 6)
+            (nth d 1)
+            (nth d 4)
+            (nth d 8)
+            (nth d 5)
+            (nth d 9)
+            (nth d 2)]]
+    (score d1)
+    )
   
   )

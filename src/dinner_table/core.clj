@@ -1,6 +1,7 @@
 (ns dinner-table.core
   (:require [dinner-table.data :as data]
             [dinner-table.solver :as solver]
+            [dinner-table.score :as score]
             [dinner-table.output :as output])
   (:gen-class))
 
@@ -13,13 +14,20 @@
     (let [i (first args)
           o (second args)
           seconds (read-string (nth args 2))
-          velocity 0.001
+          velocity 0.0001
           ]
       (println "Computing a solution for" i "in" seconds "seconds")
       (let [configuration (data/parse-data-file i)
-            solution (solver/simulated-annealing configuration velocity seconds)]
-        (output/output-solution solution o)))))
+            sa (future (solver/simulated-annealing configuration velocity seconds))
+            r (future (solver/best-random configuration seconds))
+            best (if (> (score/score @sa)
+                        (:score @r))
+                   @sa
+                   (:configuration @r))]
+        (solver/print-solution best)
+        (output/output-solution best o))
+      (System/exit 0))))
 
 (comment
-  (-main "resources/hw1-inst1.txt" "hw1-soln1.txt" 5)
+  (-main "resources/hw1-inst1.txt" "hw1-soln1.txt" "5")
   )

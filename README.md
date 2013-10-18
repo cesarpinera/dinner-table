@@ -2,6 +2,12 @@
 
 Solution to HW1 for CS541 Artificial Intelligence 
 
+**Author:** Cesar Pinera
+
+**Email:** cesar.pinera@gmail.com
+
+## Language
+
 This project has been written in Clojure, and uses Leiningen as the build system. 
 
 ## Requirements
@@ -12,7 +18,20 @@ This project has been written in Clojure, and uses Leiningen as the build system
 
 ## Usage
 
+### Full run
+
 Run the generate.sh shell script (e.g. ./generate.sh). It will invoke the build system, which will download all dependencies as needed, including Clojure itself, and will produce the solution files for the homework in the solution subdirectory. 
+
+### Single problem run
+
+In order to find a solution for a single problem, use the run facility in leiningen:
+
+  ````
+lein run <input file> <output file> <seconds>
+  
+  ````
+The program will run for the specified number of seconds (plus whatever compilation time and JVM start up time is needed). The solvers are time-limited, so even if the loading process takes time, it is not counted towards the solution time. 
+
 
 ## Solution
 
@@ -25,10 +44,17 @@ In the file src/dinner_table/solver.clj a number of algorithms have been impleme
 - Random + Haters First
 - Complete Search
 
-The best solver was consistently Simmulated Anneling. Random does well in the smallest problem (10 people), but becomes increasingly bad as the number of people increases. 
+The best solver so far has been Simulated Anneling for problems with over 10 people. Random does well in the smallest problem (10 people), but becomes increasingly bad as the number of people increases. In any case, two simulataneous threads are run for each problem, one with the simulated anneling implementation and the second one with random sitting, and the best one is chosen. Of course, this requires a multi-core CPU in order to stay within the time limits, which I have assumed to be a reasonable assumption to make. 
+
+## Testing
+
+The scoring function has been tested against the solution provided by Bart, and it correctly scores it to the expected value of 100.
+
+Complete search correctly returns a 100 solution for the first problem. 
 
 ## Code repository
 
+The source repository can be found in [Github](https://github.com/cesarpinera/dinner-table).
 
 ## License
 
